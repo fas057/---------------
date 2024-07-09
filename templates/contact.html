@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Форма записи</title>
+    <style>
+        body {
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 50px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #ffffff;
+            border-color: #007bff;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Свяжитесь со мной</h1>
+        <form method="POST">
+            {{ form.csrf_token }}
+            <div class="form-group">
+                <label for="name">Имя:</label>
+                <input type="text" id="name" name="name">
+                {% for error in form.name.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+                {% for error in form.email.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <label for="message">Введите Ваш запрос:</label>
+                <textarea id="message" name="message"></textarea>
+                {% for error in form.message.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+                <div class="form-group">
+                    <label for="phone">Введите Ваш номер телефона:</label>
+                    <textarea id="phone" name="phone"></textarea>
+                    {% for error in form.phone.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Отправить" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

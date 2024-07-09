@@ -1,0 +1,53 @@
+<html>
+<head>
+    <title>Список пользователей</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th, table td {
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Список пользователей</h1>
+    <table>
+        <tr>
+            <th>Имя</th>
+            <th>Email</th>
+            <th>Запрос клиента</th>
+            <th>Номер телефона</th>
+            <th>Действия</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.message }}</td>
+            <td>{{ user.phone }}</td>
+            <td>
+                <a href="/users/edit/{{ user.id }}">Изменить</a>
+                <a href="/users/delete/{{ user.id }}">Удалить</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/users/add">Добавить пользователя</a>
+</body>
+<p><a href="/">На главную</a></p>
+</html>
